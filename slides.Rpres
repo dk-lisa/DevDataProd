@@ -1,0 +1,56 @@
+Unemployment: the sad and even sadder facts about it
+========================================================
+author: dk-lisa
+
+## An app showing the unemployment crisis and discrepancy between Males and Females!
+
+The app's internals
+========================================================
+Available [online](https://noootsab.shinyapps.io/devdataprod-noootsab/), the application we'll talk about has
+been:
+ * created using [RStudio's Shiny](http://shiny.rstudio.com/) and 
+ * published on the helpful hosting service [shinyapps.io](http://www.shinyapps.io).
+
+
+
+Data
+========================================================
+Time series datasets on unemployment available from [datamarket.com](http://datamarket.com).
+
+```{r echo=FALSE, results='hide'}
+library(rdatamarket)
+```
+To ease the integration, data market is distributing a R package, `rdatamarket`. Installing it, gives access to:
+ * `dminfo`: metadata of a dataset by id.
+ * `dmlist`: fetch data by id.
+```{r}
+u <- dminfo("19rf")
+u$title
+```
+
+
+Unemployment by geopolitical entity
+========================================================
+However, the time series has been split by gender. 
+
+This to also illustrate how female employments sadly suffers the crisis more.
+
+```{r, echo=FALSE, cache, fig.width=16}
+dm.19rf <- dmlist("19rf", 
+                  "Geopolitical entity (declaring)" = "Belgium", 
+                  "Seasonal adjustment" = "Not seasonally adjusted data", 
+                  "Indicator" = "Unemployment according to ILO definition - Females")
+f.t <- ts(subset(dm.19rf, select=Value), frequency=12, start = c(1983,1))
+plot(decompose(f.t))
+title("Belgian females (decomposed ts)")
+```
+
+Predict the unemployment
+========================================================
+Three ways:
+ * `HoltWinters`: very simple exponential smoothing
+ * auto __ARIMA__: `auto.arima` (from library `forecast`)
+ * tunable `ARIMA`: sliders for p, d and q -- [see](http://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average))
+
+![UI](ui.png)
+
