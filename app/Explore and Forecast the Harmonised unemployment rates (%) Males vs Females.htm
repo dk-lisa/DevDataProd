@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.0];shiny[0.10.2.1];jslider[1];bootstrap[2.3.2];bootstrap-responsive[2.3.2]</script>
+<script src="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/json2-min.js"></script>
+<script src="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/jquery_002.js"></script>
+<link href="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/shiny.css" rel="stylesheet">
+<script src="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/shiny.js"></script>
+<link href="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/jquery.css" rel="stylesheet">
+<script src="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/jquery.js"></script>
+<link href="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/bootstrap.css" rel="stylesheet">
+<script src="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/bootstrap.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="Explore%20and%20Forecast%20the%20Harmonised%20unemployment%20rates%20%28%%29%20Males%20vs%20Females_files/bootstrap-responsive.css" rel="stylesheet">
+  <title>Explore and Forecast the Harmonised unemployment rates (%) Males vs Females</title>
+</head>
+<body class="disconnected">
+<div class="container-fluid">
+  <h2 style="padding: 10px 0px;">Explore and Forecast the Harmonised unemployment rates (%) Males vs Females</h2>
+  <strong>
+    <p>
+      Using http://datamarket.com datasets,
+      <a href="https://datamarket.com/en/data/set/19rf/#%21ds=19rf%21prs=2:prt=4.3.1:pru=f&amp;display=line&amp;s=6ri&amp;e=bsf&amp;title=Harmonised+unemployment+rates+%28%25%29+-+monthly+data">see here.</a>
+    </p>
+  </strong>
+  <strong>
+    <p>
+      The code can be checked on github,
+      <a href="https://github.com/dk-lisa/devdataprod">see here.</a>
+    </p>
+  </strong>
+  <div class="row-fluid">
+    <div class="span4">
+      <form class="well">
+        <strong>In this form, you can choose the country (or group) for which the time series will be used and compared.</strong>
+        <h4>Choose the Geopolitical entity and the prediction period (in months)</h4>
+        <div id="selectEntity" class="shiny-html-output shiny-bound-output"></div>
+        <div>
+          <label class="control-label" for="period">Predicted Months</label>
+          <input style="display: none;" id="period" name="period" value="1" class="jslider shiny-bound-input" data-from="1" data-to="12" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>1</span></div><div class="jslider-label jslider-label-to"><span>12</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>1</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 9.1%"></span><span style="left: 18.2%"></span><span style="left: 27.299999999999997%"></span><span style="left: 36.4%"></span><span style="left: 45.5%"></span><span style="left: 54.599999999999994%"></span><span style="left: 63.699999999999996%"></span><span style="left: 72.8%"></span><span style="left: 81.89999999999999%"></span><span style="left: 91%"></span><span style="left: 100.1%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <hr>
+        <h4>Please change the following parameters to adjust the Males time series</h4>
+        <div>
+          <label class="control-label" for="malesDiff">Males Diff (stationary)</label>
+          <input style="display: none;" id="malesDiff" name="malesDiff" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <div>
+          <label class="control-label" for="malesP">Males P</label>
+          <input style="display: none;" id="malesP" name="malesP" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <div>
+          <label class="control-label" for="malesQ">Males Q</label>
+          <input style="display: none;" id="malesQ" name="malesQ" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <hr>
+        <h4>Please change the following parameters to adjust the Females time series</h4>
+        <div>
+          <label class="control-label" for="femalesDiff">Females Diff (stationary)</label>
+          <input style="display: none;" id="femalesDiff" name="femalesDiff" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <div>
+          <label class="control-label" for="femalesP">Females P</label>
+          <input style="display: none;" id="femalesP" name="femalesP" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+        <div>
+          <label class="control-label" for="femalesQ">Females Q</label>
+          <input style="display: none;" id="femalesQ" name="femalesQ" value="0" class="jslider shiny-bound-input" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE" type="slider"><span class="jslider jslider_plastic jslider-single"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div style="left: 0%;" class="jslider-pointer"></div><div class="jslider-pointer jslider-pointer-to"></div><div style="display: none;" class="jslider-label"><span>0</span></div><div class="jslider-label jslider-label-to"><span>20</span></div><div style="left: 0%; margin-left: 0px; right: auto;" class="jslider-value"><span>0</span></div><div class="jslider-value jslider-value-to"><span></span></div><div class="jslider-scale"><span style="left: 0%"></span><span style="left: 5%"></span><span style="left: 10%"></span><span style="left: 15%"></span><span style="left: 20%"></span><span style="left: 25%"></span><span style="left: 30%"></span><span style="left: 35%"></span><span style="left: 40%"></span><span style="left: 45%"></span><span style="left: 50%"></span><span style="left: 55%"></span><span style="left: 60%"></span><span style="left: 65%"></span><span style="left: 70%"></span><span style="left: 75%"></span><span style="left: 80%"></span><span style="left: 85%"></span><span style="left: 90%"></span><span style="left: 95%"></span><span style="left: 100%"></span></div></td></tr></tbody></table></span>
+        </div>
+      </form>
+    </div>
+    <div class="span8">
+      <h3>First, let's glance at the time series about Males and Females' unemployment</h3>
+      <div class="row-fluid">
+        <div class="span6">
+          <h2>Males</h2>
+        </div>
+        <div class="span6">
+          <h2>Females</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <hr>
+      <h3>Holt-Winters exponential smoothing to make short-term forecasts</h3>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.fut" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.fut" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <hr>
+      <h3>Differenciated time series (tune until stationary is reached)</h3>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.diff" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.diff" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <hr>
+      <h3>Autoregressive Integrated Moving Average (ARIMA)</h3>
+      <h4>Here is the result using R's auto-arima</h4>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.auto.arima" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.auto.arima" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <h4>Here are the ACF and partial ACF to help you tuning P and Q</h4>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.ACF" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.ACF" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.PACF" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.PACF" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+      <h4>Here is the plot of the prediction using the parameters</h4>
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="males.ArimaPred" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+        <div class="span6">
+          <div id="females.ArimaPred" class="shiny-plot-output shiny-bound-output" style="width: 100% ; height: 400px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>
